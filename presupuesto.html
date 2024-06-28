@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <table>
+        <tr style="background-color: rgb(105, 166, 216);">
+            <td class="titulo" style="text-align:left;padding: 10px;">
+                INMOBILIARIA CERTUS
+            </td>
+            <td style="text-align:right ;">
+                atencion@certus.edu.pe
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="banner" style="text-align: center; padding: 20px;">
+                <img src="IMG/inmobiliaria.png" alt="Banner" style="max-width: 100%; height: auto;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="presentacion" style="text-align: center; padding: 10px;">
+                <h2>PRESENTACIÓN</h2>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="cuadros" style="text-align: center; padding: 20px;">
+                <div class="cuadro">
+                    <a href="https://www.prefabricadas10.com/casas-de-lujo/" target="_blank">
+                        <iframe src="https://www.prefabricadas10.com/casas-de-lujo/" frameborder="0"></iframe>
+                        <p>Visitar</p>
+                    </a>
+                </div>
+                <div class="cuadro">
+                    <a href="https://www.pinterest.com/pin/573646071264769480/" target="_blank">
+                        <iframe src="https://www.pinterest.com/pin/573646071264769480/" frameborder="0"></iframe>
+                        <p>Visitar</p>
+                    </a>
+                </div>
+                <div class="cuadro">
+                    <a href="https://www.1stdibs.com/project/collingwood-residence-los-angeles-ca/15713/" target="_blank">
+                        <iframe src="https://www.1stdibs.com/project/collingwood-residence-los-angeles-ca/15713/" frameborder="0"></iframe>
+                        <p>Visitar</p>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="presupuesto" style="text-align: center; padding: 20px;">
+                <h2>PRESUPUESTO</h2>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center; padding: 20px;">
+                <img src="IMG//plano.jpg" alt="Plano" style="max-width: 100%; height: auto;">
+            </td>
+            <td class="valor-predio" style="text-align: left; padding: 20px;">
+                <h3>VALOR DEL PREDIO</h3>
+                <form id="formulario">
+                    Largo (m): <input type="number" id="largo"><br>
+                    Ancho (m): <input type="number" id="ancho"><br>
+                    Área (m²): <input type="number" id="area" readonly style="background-color: rgb(124, 193, 199);"><br>
+                    Distrito: 
+                    <select id="distrito">
+                        <option value="450">Lima Cercado</option>
+                        <option value="550">La Victoria</option>
+                        <option value="650">Lince</option>
+                        <option value="670">Jesús María</option>
+                        <option value="750">Pueblo Libre</option>
+                    </select><br>
+                    Precio m²: <input type="number" id="precio" readonly style="background-color: rgb(87, 195, 202);"><br>
+                    Valor S/: <input type="number" id="valorSoles" readonly style="background-color: rgb(114, 195, 211);"><br>
+                    Valor US$: <input type="number" id="valorDolares" readonly style="background-color: rgb(117, 191, 208);"><br>
+                    <button type="button" onclick="calcular()">Calcular</button>
+                    <button type="button" onclick="limpiar()">Limpiar</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    
+    <script>
+        const tipoCambio = 3.5;
+    
+        document.getElementById('distrito').addEventListener('change', function() {
+            document.getElementById('precio').value = this.value;
+        });
+    
+        function calcular() {
+            const largo = parseFloat(document.getElementById('largo').value) || 0;
+            const ancho = parseFloat(document.getElementById('ancho').value) || 0;
+            const precio = parseFloat(document.getElementById('precio').value) || 0;
+    
+            const area = largo * ancho;
+            const valorSoles = area * precio;
+            const valorDolares = valorSoles / tipoCambio;
+    
+            document.getElementById('area').value = area.toFixed(2);
+            document.getElementById('valorSoles').value = valorSoles.toFixed(2);
+            document.getElementById('valorDolares').value = valorDolares.toFixed(2);
+        }
+    
+        function limpiar() {
+            document.getElementById('formulario').reset();
+            document.getElementById('area').value = '';
+            document.getElementById('valorSoles').value = '';
+            document.getElementById('valorDolares').value = '';
+        }
+    </script>
+</body>
+</html>
